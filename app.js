@@ -20,9 +20,10 @@ function Submit(e) {
     }
     const result = dataCheck(addPerson);
     if (result.statu) {
+        infoCreate(result.message, result.statu);
 
     } else {
-        infoCreate(result.message, result.statu)
+        infoCreate(result.message, result.statu);
         console.log(result.message);
     }
 
@@ -45,7 +46,7 @@ function dataCheck(person) {
 
     return {
         statu : true,
-        message : ''
+        message : 'Record'
     }
 
 }
@@ -65,4 +66,16 @@ function infoCreate  (message, statu) {
 
 
     document.querySelector('.container').insertBefore(createdInfo, form);
+
+    // setTimeout, setInterval
+
+    setTimeout(function () {
+        const deleteDiv = document.querySelector('.info');
+        if (deleteDiv) {
+            deleteDiv.remove();
+        }
+        
+    }, 2000)
+    
+
 }
