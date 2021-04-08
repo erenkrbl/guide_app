@@ -5,6 +5,7 @@ const lastname = document.getElementById('lastname');
 const email = document.getElementById('email');
 
 const form = document.getElementById('form-guide');
+const personList = document.querySelector('.person-list');
 
 // event listeners define
 
@@ -20,6 +21,8 @@ function Submit(e) {
     }
     const result = dataCheck(addPerson);
     if (result.statu) {
+        personToAdd(addPerson);
+
         infoCreate(result.message, result.statu);
 
     } else {
@@ -28,6 +31,21 @@ function Submit(e) {
     }
 
     console.log(addPerson);
+}
+
+function personToAdd(addPerson) {
+    const createTrElement = document.createElement('tr');
+    createTrElement.innerHTML = `<td>${addPerson.firstname}</td>
+    <td>${addPerson.lastname}</td>
+    <td>${addPerson.email}</td>
+    <td>
+        <button class="btn btn--edit"><i class="far fa-edit"></i></button>
+        <button class="btn btn--delete"><i class="far fa-trash-alt"></i></button>
+    </td>`;
+
+    personList.appendChild(createTrElement);
+
+
 }
 
 function dataCheck(person) {
