@@ -11,6 +11,10 @@ const personList = document.querySelector('.person-list');
 
 form.addEventListener('submit', Submit);
 
+// All person for array
+
+const allPersonArray = []; 
+
 function Submit(e) {
     e.preventDefault();
 
@@ -22,15 +26,11 @@ function Submit(e) {
     const result = dataCheck(addPerson);
     if (result.statu) {
         personToAdd(addPerson);
-
-        infoCreate(result.message, result.statu);
-
     } else {
         infoCreate(result.message, result.statu);
-        console.log(result.message);
     }
 
-    console.log(addPerson);
+    //console.log(addPerson);
 }
 
 function personToAdd(addPerson) {
@@ -44,6 +44,8 @@ function personToAdd(addPerson) {
     </td>`;
 
     personList.appendChild(createTrElement);
+    allPersonArray.push(addPerson);
+    infoCreate('Person has added to guide', true);
 
 
 }
