@@ -43,7 +43,7 @@ function dataCheck(person) {
             return result;
         }
     }
-
+    cleanAreas();
     return {
         statu : true,
         message : 'Record'
@@ -77,5 +77,12 @@ function infoCreate  (message, statu) {
         
     }, 2000)
     
+
+}
+
+function cleanAreas () {
+    firstname.value = '';
+    lastname.value = '';
+    email.value = '';
 
 }
