@@ -37,6 +37,7 @@ function makePersonTransactions(event) {
         email.value = selectedTr.cells[2].textContent;
 
         selectedLine = selectedTr;
+        console.log(allPersonArray);
     }
 }
 
@@ -90,10 +91,24 @@ function Submit(e) {
 
 function personUpdate(person) {
     // Selected person's in the person parameter has new value 
-    
+    // Selected line has old value
+
+    for (let i = 0; i < allPersonArray.length; i++){
+        if (allPersonArray[i].email === selectedLine.cells[2].textContent) {
+            allPersonArray[i] = person;
+            break;
+        }
+    }
+
+
     selectedLine.cells[0].textContent = person.firstname;
     selectedLine.cells[1].textContent = person.lastname;
     selectedLine.cells[2].textContent = person.email;
+
+    document.querySelector('.submitUpdate').value = 'Submit';
+    selectedLine = undefined;
+    
+    console.log(allPersonArray);
 
 }
 
