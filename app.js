@@ -17,6 +17,9 @@ personList.addEventListener('click', makePersonTransactions);
 
 const allPersonArray = [];
 
+let selectedLine = undefined;
+
+
 function makePersonTransactions(event) {
     //console.log(event.target);
     if (event.target.classList.contains('btn--delete')) {
@@ -25,7 +28,15 @@ function makePersonTransactions(event) {
         guideDelete(deleteTr, deleteMail);
         //console.log('Delete');
     } else if (event.target.classList.contains('btn--edit')) {
-        console.log('Update');
+        document.querySelector('.submitUpdate').value = 'Update';
+        const selectedTr = event.target.parentElement.parentElement;
+        const updateMail = selectedTr.cells[2].textContent;
+
+        firstname.value = selectedTr.cells[0].textContent;
+        lastname.value = selectedTr.cells[1].textContent;
+        email.value = selectedTr.cells[2].textContent;
+
+        selectedLine = selectedTr;
     }
 }
 
@@ -56,14 +67,19 @@ function guideDelete(deleteTrElement, deleteMail){
 function Submit(e) {
     e.preventDefault();
 
-    const addPerson = {
+    const addOrUpdatePerson = {
         firstname : firstname.value,
         lastname : lastname.value,
         email : email.value,
     }
-    const result = dataCheck(addPerson);
+    const result = dataCheck(addOrUpdatePerson);
     if (result.statu) {
-        personToAdd(addPerson);
+        if (selectedLine) {
+            // update
+        } else {
+            personToAdd(addOrUpdatePerson);
+
+        }
     } else {
         infoCreate(result.message, result.statu);
     }
