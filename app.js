@@ -32,11 +32,21 @@ function makePersonTransactions(event) {
 function guideDelete(deleteTrElement, deleteMail){  
     deleteTrElement.remove();
     console.log(deleteTrElement, deleteMail);
+    /*
     allPersonArray.forEach((person, index) => {
         if (person.email === deleteMail) {
             allPersonArray.splice(index, 1)
         }
     });
+    */
+
+    const indeliblePersons = allPersonArray.filter(function(person, index) {
+        return person.email !== deleteMail;
+    });
+
+    allPersonArray.length = 0;
+    allPersonArray.push(...indeliblePersons);
+    
     console.log('Delete done');
     console.log(allPersonArray);
 
