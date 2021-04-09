@@ -76,6 +76,7 @@ function Submit(e) {
     if (result.statu) {
         if (selectedLine) {
             // update
+            personUpdate(addOrUpdatePerson);
         } else {
             personToAdd(addOrUpdatePerson);
 
@@ -85,6 +86,15 @@ function Submit(e) {
     }
 
     //console.log(addPerson);
+}
+
+function personUpdate(person) {
+    // Selected person's in the person parameter has new value 
+    
+    selectedLine.cells[0].textContent = person.firstname;
+    selectedLine.cells[1].textContent = person.lastname;
+    selectedLine.cells[2].textContent = person.email;
+
 }
 
 function personToAdd(addPerson) {
