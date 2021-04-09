@@ -25,7 +25,7 @@ function makePersonTransactions(event) {
     if (event.target.classList.contains('btn--delete')) {
         const deleteTr = event.target.parentElement.parentElement;
         const deleteMail = event.target.parentElement.previousElementSibling.textContent
-        guideDelete(deleteTr, deleteMail);
+        personDelete(deleteTr, deleteMail);
         //console.log('Delete');
     } else if (event.target.classList.contains('btn--edit')) {
         document.querySelector('.submitUpdate').value = 'Update';
@@ -41,7 +41,7 @@ function makePersonTransactions(event) {
     }
 }
 
-function guideDelete(deleteTrElement, deleteMail){  
+function personDelete(deleteTrElement, deleteMail){  
     deleteTrElement.remove();
     console.log(deleteTrElement, deleteMail);
     /*
@@ -58,10 +58,9 @@ function guideDelete(deleteTrElement, deleteMail){
 
     allPersonArray.length = 0;
     allPersonArray.push(...indeliblePersons);
+    cleanAreas();
+    document.querySelector('.submitUpdate').value = 'Submit';
     
-    console.log('Delete done');
-    console.log(allPersonArray);
-
 
 }
 
@@ -107,7 +106,7 @@ function personUpdate(person) {
 
     document.querySelector('.submitUpdate').value = 'Submit';
     selectedLine = undefined;
-    
+
     console.log(allPersonArray);
 
 }
@@ -133,7 +132,7 @@ function dataCheck(person) {
     // use in  at objects
     for (const value in person) {
         if (person[value]) {
-            console.log(person[value])
+            //console.log(person[value])
         } else {
             const result = {
                 statu : false,
