@@ -11,9 +11,37 @@ const personList = document.querySelector('.person-list');
 
 form.addEventListener('submit', Submit);
 
+personList.addEventListener('click', makePersonTransactions);
+
 // All person for array
 
-const allPersonArray = []; 
+const allPersonArray = [];
+
+function makePersonTransactions(event) {
+    //console.log(event.target);
+    if (event.target.classList.contains('btn--delete')) {
+        const deleteTr = event.target.parentElement.parentElement;
+        const deleteMail = event.target.parentElement.previousElementSibling.textContent
+        guideDelete(deleteTr, deleteMail);
+        //console.log('Delete');
+    } else if (event.target.classList.contains('btn--edit')) {
+        console.log('Update');
+    }
+}
+
+function guideDelete(deleteTrElement, deleteMail){  
+    deleteTrElement.remove();
+    console.log(deleteTrElement, deleteMail);
+    allPersonArray.forEach((person, index) => {
+        if (person.email === deleteMail) {
+            allPersonArray.splice(index, 1)
+        }
+    });
+    console.log('Delete done');
+    console.log(allPersonArray);
+
+
+}
 
 function Submit(e) {
     e.preventDefault();
