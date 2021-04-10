@@ -13,7 +13,13 @@ class Screen {
         this.lastname = document.getElementById('lastname');
         this.email = document.getElementById('email');
         this.addUpdateButton = document.querySelector('.submitUpdate');
+        this.form = document.getElementById('form-guide').addEventListener('submit', this.submitUpdate);
         this.storage = new Storage();
+    }
+
+    submitUpdate(e) {
+        e.preventDefault();
+        console.log("Work...");
     }
 }
 
@@ -41,7 +47,7 @@ class Storage {
     }
 }
 
+document.addEventListener('DOMContentLoaded', function(e) {
+    const screen = new Screen();
 
-
-const eric = new Person('Eric', 'Khan', 'er@kh.com');
-const screen = new Screen();
+});
