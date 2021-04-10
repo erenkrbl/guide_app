@@ -19,7 +19,8 @@ class Screen {
 
     submitUpdate(e) {
         e.preventDefault();
-        console.log("Work...");
+        const person = new Person(this.firstname.value, this.lastname.value, this.email.value);
+        console.log(person);
     }
 }
 
