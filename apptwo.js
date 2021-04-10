@@ -25,8 +25,22 @@ class Screen {
         this.lastname = document.getElementById('lastname');
         this.email = document.getElementById('email');
         this.addUpdateButton = document.querySelector('.submitUpdate');
-        this.form = document.getElementById('form-guide').addEventListener('submit', this.submitUpdate);
+        this.form = document.getElementById('form-guide').addEventListener('submit', this.submitUpdate.bind(this));
+        this.personList = document.querySelector('.person-list');
         this.storage = new Storage();
+    }
+
+    personAddScreen(person) {
+        const createElementTr = document.createElement('tr');
+        createElementTr.innerHTML = `<td>${person.firstname}</td>
+        <td>${person.lastname}</td>
+        <td>${person.email}</td>
+        <td>
+            <button class="btn btn--edit"><i class="far fa-edit"></i></button>
+            <button class="btn btn--delete"><i class="far fa-trash-alt"></i></button>
+        </td>`;
+
+        this.personList.appendChild(createElementTr);
     }
 
     submitUpdate(e) {
@@ -35,7 +49,9 @@ class Screen {
         const result = Util.checkEmptyArea(person.firstname, person.lastname, person.email);
 
         if (result) { // All areas full
-            console.log('Successful')
+            this.personAddScreen(person);
+
+            // console.log('Successful')
         } else { // Some areas empty
             console.log("Some areas empty");
         }
