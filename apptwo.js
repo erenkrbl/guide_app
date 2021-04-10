@@ -28,6 +28,13 @@ class Screen {
         this.form = document.getElementById('form-guide').addEventListener('submit', this.submitUpdate.bind(this));
         this.personList = document.querySelector('.person-list');
         this.storage = new Storage();
+        this.personWriteScreen();
+    }
+
+    personWriteScreen() {
+        this.storage.allPersons.forEach(person => {
+            this.personAddScreen(person);
+        })
     }
 
     personAddScreen(person) {
@@ -49,6 +56,8 @@ class Screen {
         const result = Util.checkEmptyArea(person.firstname, person.lastname, person.email);
 
         if (result) { // All areas full
+
+            //
             this.personAddScreen(person);
             // localStorage add
             this.storage.personAdd(person);
@@ -65,7 +74,7 @@ class Storage {
     // fetch data when the app is first opened
     // uygulama ilk açıldığında veriler getirilir
     constructor() {
-        this.allPersons = [];
+        this.allPersons = this.peopleBring;
     }
 
     peopleBring() {
