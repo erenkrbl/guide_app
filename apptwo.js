@@ -32,10 +32,13 @@ class Storage {
             allPersonsLocal = JSON.parse(localStorage.getItem('allPersons'));
         }
         this.allPersons = allPersonsLocal;
-        
+        return allPersonsLocal;
     }
-
-
+    personAdd(person){
+        const allPersonsLocal = this.peopleBring();
+        allPersonsLocal.push(person);
+        localStorage.setItem('allPersons', JSON.stringify(allPersonsLocal));
+    }
 }
 
 
