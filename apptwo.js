@@ -6,6 +6,18 @@ class Person {
     }
 }
 
+class Util {
+    static checkEmptyArea(...areas) {
+        let result = true;
+        areas.forEach(area => {
+            if (area.length === 0) {
+                result = false;
+                return false;
+            }
+        });
+        return result;
+    }
+}
 
 class Screen {
     constructor () {
@@ -20,7 +32,14 @@ class Screen {
     submitUpdate(e) {
         e.preventDefault();
         const person = new Person(this.firstname.value, this.lastname.value, this.email.value);
-        console.log(person);
+        const result = Util.checkEmptyArea(person.firstname, person.lastname, person.email);
+
+        if (result) { // All areas full
+            console.log('Successful')
+        } else { // Some areas empty
+            console.log("Some areas empty");
+        }
+
     }
 }
 
@@ -50,5 +69,4 @@ class Storage {
 
 document.addEventListener('DOMContentLoaded', function(e) {
     const screen = new Screen();
-
 });
