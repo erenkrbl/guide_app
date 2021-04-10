@@ -50,6 +50,8 @@ class Screen {
 
         if (result) { // All areas full
             this.personAddScreen(person);
+            // localStorage add
+            this.storage.personAdd(person);
 
             // console.log('Successful')
         } else { // Some areas empty
