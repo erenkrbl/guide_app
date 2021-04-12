@@ -33,6 +33,13 @@ class Screen {
         this.personWriteScreen();
     }
 
+    cleanAreas() {
+        this.firstname.value = '';
+        this.lastname.value = '';
+        this.email.value = '';
+    
+    }
+
     updateOrDelete(e) {
         const clickPlace = e.target;
         if (clickPlace.classList.contains('btn--delete')) {
@@ -49,7 +56,9 @@ class Screen {
     personDeleteScreen() {
         this.chooseLine.remove();
         const deletedEmail = this.chooseLine.cells[2].textContent;
+
         this.storage.personDelete(deletedEmail);
+        this.cleanAreas();
     }
 
 
@@ -83,6 +92,7 @@ class Screen {
             this.personAddScreen(person);
             // localStorage add
             this.storage.personAdd(person);
+            this.cleanAreas();
 
             // console.log('Successful')
         } else { // Some areas empty
