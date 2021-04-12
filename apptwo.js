@@ -49,8 +49,17 @@ class Screen {
             //console.log('Deleted');
         } else if (clickPlace.classList.contains('btn--edit')) {
             //console.log('update');
+            this.chooseLine = clickPlace.parentElement.parentElement;
+            this.addUpdateButton.value = 'Update';
+            this.firstname.value = this.chooseLine.cells[0].textContent;
+            this.lastname.value = this.chooseLine.cells[1].textContent;
+            this.email.value = this.chooseLine.cells[2].textContent;
         }
         //console.log(this);
+    }
+
+    personUpdateScreen () {
+
     }
 
     personDeleteScreen() {
@@ -59,6 +68,7 @@ class Screen {
 
         this.storage.personDelete(deletedEmail);
         this.cleanAreas();
+        this.chooseLine = undefined;
     }
 
 
