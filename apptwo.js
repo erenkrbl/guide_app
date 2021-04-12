@@ -34,7 +34,7 @@ class Screen {
     personWriteScreen() {
         this.storage.allPersons.forEach(person => {
             this.personAddScreen(person);
-        })
+        });
     }
 
     personAddScreen(person) {
@@ -74,7 +74,7 @@ class Storage {
     // fetch data when the app is first opened
     // uygulama ilk açıldığında veriler getirilir
     constructor() {
-        this.allPersons = this.peopleBring;
+        this.allPersons = this.peopleBring();
     }
 
     peopleBring() {
@@ -84,13 +84,20 @@ class Storage {
         } else {
             allPersonsLocal = JSON.parse(localStorage.getItem('allPersons'));
         }
-        this.allPersons = allPersonsLocal;
         return allPersonsLocal;
     }
     personAdd(person){
-        const allPersonsLocal = this.peopleBring();
-        allPersonsLocal.push(person);
-        localStorage.setItem('allPersons', JSON.stringify(allPersonsLocal));
+        this.allPersons.push(person);
+        localStorage.setItem('allPersons', JSON.stringify(this.allPersons));
+    }
+    personDelete(email) {
+        this.allPersons.forEach((person, index) => {
+            if (person.email === email) {
+                this.allPersons.splice(index, 1);
+            }
+        });
+        localStorage.setItem('allPersons', JSON.stringify(this.allPersons));
+
     }
 }
 
