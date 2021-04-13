@@ -42,6 +42,7 @@ class Screen {
 
     updateOrDelete(e) {
         const clickPlace = e.target;
+
         if (clickPlace.classList.contains('btn--delete')) {
             this.chooseLine = clickPlace.parentElement.parentElement;
             this.personDeleteScreen();
@@ -54,11 +55,22 @@ class Screen {
             this.firstname.value = this.chooseLine.cells[0].textContent;
             this.lastname.value = this.chooseLine.cells[1].textContent;
             this.email.value = this.chooseLine.cells[2].textContent;
+            
         }
         //console.log(this);
     }
 
-    personUpdateScreen () {
+    personUpdateScreen (person) {
+        this.storage.personUpdate(person, this.chooseLine.cells[2].textContent);
+
+        this.chooseLine.cells[0].textContent = person.firstname;
+        this.chooseLine.cells[1].textContent = person.lastname;
+        this.chooseLine.cells[2].textContent = person.email;
+
+        this.cleanAreas();
+        this.chooseLine = undefined;
+        this.addUpdateButton.value = 'Submit';
+
 
     }
 
@@ -98,10 +110,17 @@ class Screen {
 
         if (result) { // All areas full
 
-            //
-            this.personAddScreen(person);
-            // localStorage add
-            this.storage.personAdd(person);
+            if (this.chooseLine) {
+
+                this.personUpdateScreen(person);
+
+            } else {
+
+                this.personAddScreen(person);
+                // localStorage add
+                this.storage.personAdd(person);
+            }
+
             this.cleanAreas();
 
             // console.log('Successful')
