@@ -17,15 +17,20 @@
     margin: 1rem 0;
     padding: 1rem;
     border-radius: 4px;
+    color: black;
+    opacity: 0;
+    transition: 1s ease-out;
 } 
 
 .info--success {
     border: 1px solid green;
+    opacity: 1;
 
 }
 
 .info--error {
     border: 1px solid red;
+    opacity: 1;
 }
 
 .far {
